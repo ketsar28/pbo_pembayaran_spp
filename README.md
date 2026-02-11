@@ -1,85 +1,111 @@
 # Sistem Pembayaran SPP 🎓
 
-Aplikasi desktop Java Swing sederhana untuk manajemen pembayaran SPP Siswa. Proyek ini dibuat untuk memenuhi tugas **Ujian Akhir Semester (UAS) Pemrograman Berorientasi Objek**.
+Aplikasi desktop Java sederhana untuk manajemen pembayaran SPP Siswa. Proyek ini dibuat untuk memenuhi tugas **Ujian Akhir Semester (UAS) Pemrograman Berorientasi Objek**.
 
-## 🚀 Fitur Utama
+## 📌 Tentang Proyek Ini
 
-- **Login & Logout**: Akses aman (Default: admin/123).
-- **CRUD Data Siswa**: Tambah, Edit, Hapus data siswa.
-- **Transaksi Pembayaran**: Input pembayaran SPP per bulan.
-- **Laporan (JasperReports)**: Cetak bukti pembayaran atau laporan data siswa (PDF/Preview).
-- **Auto-Increment ID**: ID Siswa otomatis terisi.
+Ini adalah aplikasi berbasis Java Swing yang memiliki fitur:
 
----
-
-## 🛠 Teknologi yang Digunakan
-
-- **Bahasa**: Java (Disarankan **JDK 21** atau lebih baru).
-- **IDE**: NetBeans / IntelliJ IDEA.
-- **Database**: MySQL (via XAMPP/WAMP).
-- **Reporting**: JasperReports 6.20.0.
-- **Build Tool**: Ant (Default NetBeans).
+- **Login Admin**: (Username: `admin`, Password: `123`).
+- **CRUD Data Siswa**: Bisa Tambah, Edit, Hapus data siswa.
+- **Transaksi SPP**: Input pembayaran bulanan.
+- **Laporan Otomatis**: Mencetak kuitansi/laporan menggunakan **JasperReports**.
+- **Database**: Menggunakan MySQL `dbProjectSiswa`.
 
 ---
 
-## 📦 Library & Dependencies (Wajib)
+## 📂 Struktur Penting
 
-Berikut adalah daftar library eksternal yang digunakan. Pastikan semua file `.jar` ini ada di folder `dist/lib` atau `lib` agar aplikasi berjalan lancar.
+Agar tidak bingung saat clone atau download, perhatikan folder ini:
 
-| Library                         | Versi     | Link Download (Maven Repo)                                                                   |
-| :------------------------------ | :-------- | :------------------------------------------------------------------------------------------- |
-| **MySQL Connector/J**           | 9.x / 8.x | [Download](https://mvnrepository.com/artifact/com.mysql/mysql-connector-j)                   |
-| **JasperReports**               | 6.20.0    | [Download](https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports/6.20.0)     |
-| **Apache Commons BeanUtils**    | 1.9.4     | [Download](https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils/1.9.4)     |
-| **Apache Commons Collections**  | 3.2.2     | [Download](https://mvnrepository.com/artifact/commons-collections/commons-collections/3.2.2) |
-| **Apache Commons Collections4** | 4.4       | [Download](https://mvnrepository.com/artifact/org.apache.commons/commons-collections4/4.4)   |
-| **Apache Commons Digester**     | 2.1       | [Download](https://mvnrepository.com/artifact/commons-digester/commons-digester/2.1)         |
-| **Apache Commons Logging**      | 1.2       | [Download](https://mvnrepository.com/artifact/commons-logging/commons-logging/1.2)           |
-| **iText** (PDF Generator)       | 2.1.7     | [Download](https://mvnrepository.com/artifact/com.lowagie/itext/2.1.7)                       |
+### 1. `dist/` (WAJIB ADA)
 
----
+Folder ini **SANGAT PENTING**. Isinya adalah:
 
-## ⚙️ Cara Install & Setup
+- `SistemPembayaranSPP.jar`: File aplikasi utama yang siap dijalankan (Executable).
+- `lib/`: Folder berisi semua library pendukung (MySQL Driver, JasperReports, dll).
 
-### 1. Persiapan Database
+> **Catatan**: Jika ingin menjalankan aplikasi tanpa membuka NetBeans, Anda **HARUS** masuk ke folder `dist` ini. Jangan jalankan jar dari luar folder ini karena nanti error "Library not found".
 
-1. Nyalakan **MySQL** di XAMPP.
-2. Buka **phpMyAdmin** atau tool database lainnya.
-3. Buat database baru (misal: `db_spp`).
-4. Pastikan nama database sesuai dengan konfigurasi di file `src/config/Koneksi.java`.
-5. Import file SQL (jika disertakan) atau buat tabel sesuai kebutuhan aplikasi.
+### 2. `src/config/Connect.java`
 
-### 2. Cara Menjalankan via File JAR (Produksi)
+Ini adalah file pengatur koneksi ke database.
 
-Ini cara paling gampang buat demo ke Dosen atau User lain tanpa buka kodingan.
-
-1. Buka terminal (CMD atau PowerShell).
-2. Masuk ke folder `dist` di dalam folder proyek ini.
-   ```bash
-   cd dist
-   ```
-3. Jalankan perintah berikut:
-
-   ```bash
-   java -jar SistemPembayaranSPP.jar
-   ```
-
-   > **PENTING**: Jangan jalankan file `.jar` dari luar folder `dist`, karena nanti error "Library Not Found". File `.jar` harus berteman dengan folder `lib` yang ada di sebelahnya.
-
-### 3. Cara Menjalankan via NetBeans (Development)
-
-1. Buka **NetBeans**.
-2. File -> **Open Project** -> Pilih folder `SistemPembayaranSPP`.
-3. Klik Kanan nama Project -> **Clean and Build**.
-4. Klik tombol **Run Project** (Segitiga Hijau) atau tekan `F6`.
+- **Database**: `dbProjectSiswa`
+- **User**: `root`
+- **Password**: `root` (Sesuaikan dengan settingan XAMPP Anda di sini jika berbeda).
 
 ---
 
-## 📝 Catatan Tambahan
+## 🛠 Cara Menjalankan Aplikasi
 
-- **Versi Java**: Project ini dikompilasi menggunakan target **Java 21**. Jika komputer Anda menggunakan Java versi lama (misal Java 8), silakan update Java Anda atau ubah setting `javac.source` di `nbproject/project.properties`.
-- **Koneksi Gagal?**: Cek username dan password MySQL Anda di `src/config/Koneksi.java`. Default XAMPP biasanya user: `root`, password: (kosong).
+Ada dua cara untuk menjalankan aplikasi ini:
+
+### Cara 1: Langsung Pakai (Tanpa Coding)
+
+Cocok untuk Dosen atau Pengguna yang ingin langsung lihat hasilnya.
+
+1.  Pastikan **Java (JDK 21 atau lebih baru)** sudah terinstall.
+2.  Nyalakan **XAMPP (MySQL)**.
+3.  Buka Terminal (CMD / PowerShell).
+4.  Masuk ke folder `dist` di dalam proyek ini:
+    ```bash
+    cd dist
+    ```
+5.  Ketikan perintah ini:
+    ```bash
+    java -jar SistemPembayaranSPP.jar
+    ```
+    _(Akan muncul jendela Login. Masukkan `admin` / `123`)_
+
+### Cara 2: Lewat NetBeans (Untuk Edit Kodingan)
+
+1.  Buka **NetBeans**.
+2.  Open Project -> Pilih folder `SistemPembayaranSPP`.
+3.  Pastikan Library sudah terload (klik kanan `Libraries` -> `Resolve Missing Problems` jika ada seru merah).
+4.  Tekan **Clean and Build** (Gambar Palu & Sapu).
+5.  Tekan **Run** (Segitiga Hijau).
 
 ---
 
-_Dibuat oleh Muhammad Ketsar Ali Abi Wahid - 2026_
+## 📦 Daftar Library & Download
+
+Aplikasi ini menggunakan beberapa library eksternal. Semua library ini **SUDAH ADA di dalam folder `dist/lib`**, jadi Anda tidak perlu download manual lagi kalau cuma mau run.
+
+Tapi kalau butuh referensi atau mau download ulang, ini link resminya (Maven Central):
+
+1.  **MySQL Connector/J** (Driver Database)
+    - Versi: 8.x / 9.x
+    - [Download di sini](https://mvnrepository.com/artifact/com.mysql/mysql-connector-j)
+2.  **JasperReports** (Engine Laporan)
+    - Versi: 6.20.0
+    - [Download di sini](https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports/6.20.0)
+3.  **Commons BeanUtils** (Pendukung Jasper)
+    - Versi: 1.9.4
+    - [Download di sini](https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils/1.9.4)
+4.  **Commons Collections**
+    - Versi: 3.2.2
+    - [Download di sini](https://mvnrepository.com/artifact/commons-collections/commons-collections/3.2.2)
+5.  **Commons Digester**
+    - Versi: 2.1
+    - [Download di sini](https://mvnrepository.com/artifact/commons-digester/commons-digester/2.1)
+6.  **Commons Logging**
+    - Versi: 1.2
+    - [Download di sini](https://mvnrepository.com/artifact/commons-logging/commons-logging/1.2)
+7.  **iText** (PDF Generator untuk Jasper)
+    - Versi: 2.1.7
+    - [Download di sini](https://mvnrepository.com/artifact/com.lowagie/itext/2.1.7)
+
+---
+
+## ⚠️ Troubleshooting
+
+**Q: Pas dijalankan muncul `UnsupportedClassVersionError`?**
+A: Itu artinya Java di komputer Anda terlalu tua. Project ini pakai **Java 21**. Update JDK Anda atau install Java 21.
+
+**Q: Pas dijalankan muncul `NoClassDefFoundError` / Gagal Konek Database?**
+A: Pastikan Anda menjalankan jar dari **DALAM folder `dist`**. Kalau dijalankan dari luar folder dist, aplikasi gak bisa nemu folder `lib`.
+
+---
+
+_Selamat Mencoba! Jangan lupa kasih Bintang di GitHub ya! ⭐_
