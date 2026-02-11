@@ -4,7 +4,7 @@
  */
 package view;
 
-import config.Koneksi;
+import config.Connect;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -46,7 +46,7 @@ public class FormUtama extends javax.swing.JFrame {
 
                 try {
                         String sql = "select * from pembayaran";
-                        Connection conn = Koneksi.configDB();
+                        Connection conn = Connect.configDB();
                         Statement stm = conn.createStatement();
                         ResultSet res = stm.executeQuery(sql);
 
@@ -70,7 +70,7 @@ public class FormUtama extends javax.swing.JFrame {
 
         private void autonumber() {
                 try {
-                        Connection conn = Koneksi.configDB();
+                        Connection conn = Connect.configDB();
                         Statement s = conn.createStatement();
                         String sql = "SELECT MAX(id_siswa) FROM pembayaran";
                         ResultSet r = s.executeQuery(sql);
@@ -477,7 +477,7 @@ public class FormUtama extends javax.swing.JFrame {
                                         + cbJurusan.getSelectedItem() + "','"
                                         + cbPembayaran.getSelectedItem() + "','"
                                         + txtJumlah.getText() + "')";
-                        Connection conn = (Connection) Koneksi.configDB();
+                        Connection conn = (Connection) Connect.configDB();
                         PreparedStatement pst = conn.prepareStatement(sql);
                         pst.execute();
                         JOptionPane.showMessageDialog(null, "data berhasil di simpan!");
@@ -499,7 +499,7 @@ public class FormUtama extends javax.swing.JFrame {
                                         + txtJumlah.getText() + "'where id_siswa='"
                                         + txtIdSiswa.getText() + "'";
 
-                        Connection conn = (Connection) Koneksi.configDB();
+                        Connection conn = (Connection) Connect.configDB();
                         PreparedStatement pst = conn.prepareStatement(sql);
                         pst.execute();
                         JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
@@ -524,7 +524,7 @@ public class FormUtama extends javax.swing.JFrame {
                                 "Konfirmasi Hapus", JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
                         try {
-                                Connection conn = Koneksi.configDB();
+                                Connection conn = Connect.configDB();
                                 String sql = "delete from pembayaran where id_siswa=?";
                                 PreparedStatement pst = conn.prepareStatement(sql);
 
@@ -578,7 +578,7 @@ public class FormUtama extends javax.swing.JFrame {
                                                 "src/view/reportSiswa.jasper");
                         }
 
-                        Connection conn = Koneksi.configDB();
+                        Connection conn = Connect.configDB();
                         HashMap<String, Object> parameters = new HashMap<>();
 
                         JasperPrint print = JasperFillManager.fillReport(reportPath, parameters, conn);

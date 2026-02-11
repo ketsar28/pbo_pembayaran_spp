@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author HELLO
  */
-public class Koneksi {
+public class Connect {
     private static Connection mysqlconfig;
     
     public static Connection configDB() throws SQLException {
